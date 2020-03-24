@@ -64,6 +64,32 @@ class PostsController extends Controller
         }
     }
 
+    /**
+     * Edit a publication by the administrator or by the person who created this content
+     */
+    public function editPost(Request $request, $id){
+                $post = Post::where('id', $id)->first();
+
+                $post->title = $request->post('title');
+                $post->content = $request->post('content');
+
+                $post->save();
+                return redirect(route('home'));
+    }
+
+    public function edit(Post $id){
+        $user = Auth::user()->id;
+        $admin = Auth::user()->isAdmin;
+
+        if($user == $id->id || $admin == true){
+            $id = ['post' => $id];
+            return view('post.edit', $id);
+        }else{
+            abort(403, 'Unauthorized action.');
+        }
+
+    }
+
 
 
 

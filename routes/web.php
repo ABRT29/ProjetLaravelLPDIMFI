@@ -26,5 +26,6 @@ Route::post('/createPost', 'PostsController@createPost')->name('createPost');
 
 Route::get('/delete/{id}', 'PostsController@delete')->name('post.delete');
 
-
+Route::get('/edit/{id}', 'PostsController@edit')->name('post.edit');
+Route::post('/editPost/{id}', 'PostsController@editPost')->name('editPost');
 
