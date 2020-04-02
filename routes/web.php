@@ -11,15 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
 
+Route::resource('users', 'UserController', ['only' => ['index', 'edit', 'update', 'destroy', 'create', 'store']])->middleware('admin');
+Route::get('users/{user}/delete', 'UserController@destroyForm')->name('users.delete')->middleware('admin');
+
+
+Route::get('/', 'HomeController@index')->name('index');
 Route::get('/home', 'PostsController@me')->name('home');
 
-Route::get('/administration', 'AdminController@index')->name('admin.index');
+Route::get('/administration', 'UserController@index')->name('admin.index')->middleware('admin');
 
 Route::get('/post/add', 'PostsController@create')->name('post.add');
 Route::post('/createPost', 'PostsController@createPost')->name('createPost');

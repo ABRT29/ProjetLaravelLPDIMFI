@@ -14,6 +14,12 @@ class PostsController extends Controller
     }
 
 
+
+    public function index(Request $request){
+            $list = Post::all();
+            return view('welcome',["list"=>$list]);
+    }
+
     /**
      * create a post
      * Post is a movie or series
