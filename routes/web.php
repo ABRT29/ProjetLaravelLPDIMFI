@@ -18,7 +18,7 @@ Route::resource('users', 'UserController', ['only' => ['index', 'edit', 'update'
 Route::get('users/{user}/delete', 'UserController@destroyForm')->name('users.delete')->middleware('admin');
 
 
-Route::get('/', 'HomeController@index')->name('index');
+Route::get('/', 'PostsController@index')->name('index');
 Route::get('/home', 'PostsController@me')->name('home');
 
 Route::get('/administration', 'UserController@index')->name('admin.index')->middleware('admin');
@@ -30,4 +30,7 @@ Route::get('/delete/{id}', 'PostsController@delete')->name('post.delete');
 
 Route::get('/edit/{id}', 'PostsController@edit')->name('post.edit');
 Route::post('/editPost/{id}', 'PostsController@editPost')->name('editPost');
+
+Route::post('/like','PostsController@postLikePost')->name('like');
+
 

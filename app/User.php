@@ -5,6 +5,9 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
+
+
 
 class User extends Authenticatable
 {
@@ -42,4 +45,15 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = bcrypt($password);
     }
+
+
+    public function likes(){
+        return $this->hasMany('App\Like');
+    }
+
+
+    public function post(){
+        return $this->hasMany('App\Post');
+    }
+
 }
