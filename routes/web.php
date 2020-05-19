@@ -17,7 +17,6 @@ Auth::routes();
 Route::resource('users', 'UserController', ['only' => ['index', 'edit', 'update', 'destroy', 'create', 'store']])->middleware('admin');
 Route::get('users/{user}/delete', 'UserController@destroyForm')->name('users.delete')->middleware('admin');
 
-
 Route::get('/', 'PostsController@index')->name('index');
 Route::get('/home', 'PostsController@me')->name('home');
 
