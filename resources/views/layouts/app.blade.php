@@ -41,20 +41,23 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Connexion') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __("S'inscrire") }}</a>
                                 </li>
                             @endif
                         @else
 
                         @if(auth()->user()->isAdmin == true)
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admin.index') }}">{{ __('Administration') }}</a>
+                                <a class="nav-link" href="{{ route('admin.index') }}">{{ __('Gestion des utilisateurs') }}</a>
                             </li>
                         @endif
+                            <li class="nav-item">
+                                <a class="nav-link " href="{{ route('index') }}">{{ __('Actualité') }}</a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -62,18 +65,24 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
+                                    @if(auth()->user()->isAdmin == true)
                                     <a class="dropdown-item" href="{{ route('home') }}">
-                                        {{ __('Home') }}
+                                        {{ __('Gestion des films') }}
                                     </a>
+                                    @else
+                                    <a class="dropdown-item" href="{{ route('home') }}">
+                                        {{ __('Mes films') }}
+                                    </a>
+                                    @endif
 
                                     <a class="dropdown-item" href="{{ route('post.add') }}">
-                                        {{ __('Create content') }}
+                                        {{ __('Ajouter un film') }}
                                     </a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Déconnexion') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

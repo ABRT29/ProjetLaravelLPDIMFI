@@ -16,6 +16,9 @@
     @foreach ($user as $users)
     <div class="card">
     <div class="card-body">
+        @if( $users->isAdmin == 1 )
+        <span class="badge badge-warning">Administrateur</span>
+        @endif
       <h2 class="card-title">{{ $users->name}}</h2>
       <p class="card-text">{{ $users->email }}</p>
       <hr>

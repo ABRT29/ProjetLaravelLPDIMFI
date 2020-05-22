@@ -15,11 +15,21 @@ class DatabaseSeeder extends Seeder
 
         App\User::create(
             [
-                'name' => 'aurelien',
-                'email' => 'aurelienbrtmail@gmail.com',
+                'name' => 'Aurélien',
+                'email' => 'aurelienbrtmail@mail.com',
                 'password' => bcrypt('aurelien'),
+                'isAdmin' => false,
+            ]
+        );
+
+        App\User::create(
+            [
+                'name' => 'Administrateur',
+                'email' => 'admin@mail.com',
+                'password' => bcrypt('adm1n1strat3ur'),
                 'isAdmin' => true,
             ]
         );
+
     }
 }

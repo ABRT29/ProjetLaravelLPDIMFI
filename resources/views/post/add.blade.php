@@ -19,7 +19,8 @@
                     <textarea class="form-control" id="exampleFormControlTextarea1" name="content" rows="3"></textarea>
                 </div>
 
-                <input type="submit" value="envoyer">
+                <button type="submit" value="envoyer" class="btn btn-primary">Envoyer</button>
+
             </form>
         </div>
     </div>

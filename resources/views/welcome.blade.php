@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">Feed</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -18,16 +18,13 @@
                     @foreach ($list as $lists)
                     <div class="card" data-postid="{{ $lists->id }}">
                         <div class="card-body">
+                        <p class="card-text">{{$lists->user->name}} {{ $lists->created_at }}</p>
                         <h2 class="card-title">{{ $lists->title }}</h2>
                         <p class="card-text">{{ $lists->content }}</p>
-                        <p>{{$lists->user->name}}</p>
-                        <hr>
-                        <p class="card-text">Auteur ID {{ $lists->user_id }}</p>
-                        <p class="card-text">Post ID {{ $lists->id }}</p>
                         </div>
                         <div class="interaction">
-                            <a class="like" href="#" >{{ Auth::user()->likes()->where('post_id', $lists->id)->first() ? Auth::user()->likes()->where('post_id', $lists->id)->first()->like == 1 ? 'You like this post' : 'Like' : 'Like'  }}</a> |
-                            <a class="like"  href="#" >{{ Auth::user()->likes()->where('post_id', $lists->id)->first() ? Auth::user()->likes()->where('post_id', $lists->id)->first()->like == 0 ? 'You dont like this post' : 'Dislike' : 'Dislike'  }}</a>
+                            <a class="like btn btn-link" href="#" >{{ Auth::user()->likes()->where('post_id', $lists->id)->first() ? Auth::user()->likes()->where('post_id', $lists->id)->first()->like == 1 ? 'You like this post' : 'Like' : 'Like'  }}</a> |
+                            <a class="like btn btn-link"  href="#" >{{ Auth::user()->likes()->where('post_id', $lists->id)->first() ? Auth::user()->likes()->where('post_id', $lists->id)->first()->like == 0 ? 'You dont like this post' : 'Dislike' : 'Dislike'  }}</a>
                         </div>
                     </div>
 

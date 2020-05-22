@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Modifier un utilisateur</div>
+                <h3>Modifier un utilisateur</h3>
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('users.update', $user->id) }}">
                         {{ csrf_field() }}
@@ -24,7 +24,8 @@
                         <div class="form-group">
                             <div class="col-md-6">
                                 <label for="isAdmin">Administrateur</label>
-                                {{ Form::checkbox('isAdmin', '1') }}
+                                <input type="hidden" name="isAdmin" value="0">
+                                <input type="checkbox" name="isAdmin" value="1" {{ $user->isAdmin == 1 ? 'checked' : '' }}>
                             </div>
                             </div>
                         <div class="form-group">

@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'isAdmin'
     ];
 
     /**
@@ -40,6 +40,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
+    public function setPasswordAttribute($password){
+        $this->attributes['password'] = Hash::needsRehash($password) ? Hash::make($password) : $password;
+    }
 
     public function likes(){
         return $this->hasMany('App\Like');
